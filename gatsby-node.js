@@ -56,19 +56,6 @@ exports.createPages = ({ actions, graphql }) => {
     })
     // Eliminate duplicate tags
     tags = _.uniq(tags)
-
-    // Make tag pages
-    tags.forEach((tag) => {
-      const tagPath = `/tags/${_.kebabCase(tag)}/`
-
-      createPage({
-        path: tagPath,
-        component: path.resolve(`src/templates/tags.js`),
-        context: {
-          tag,
-        },
-      })
-    })
   })
 }
 
