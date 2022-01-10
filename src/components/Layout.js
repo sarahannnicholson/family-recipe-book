@@ -1,13 +1,28 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { withPrefix } from "gatsby";
+
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import "./all.sass";
 import useSiteMetadata from "./SiteMetadata";
-import { withPrefix } from "gatsby";
+import "./all.sass";
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode],
+  );
+  
   return (
     <div>
       <Helmet>
@@ -56,9 +71,12 @@ const TemplateWrapper = ({ children }) => {
           content={`${withPrefix("/")}img/og-image.jpg`}
         />
       </Helmet>
-      <Navbar />
-      <div>{children}</div>
-      <Footer />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Navbar />
+        <div>{children}</div>
+        <Footer />
+      </ThemeProvider>
     </div>
   );
 };
