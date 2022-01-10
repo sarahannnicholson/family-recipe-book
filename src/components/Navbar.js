@@ -2,24 +2,23 @@ import React from "react";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import HomeIcon from '@mui/icons-material/Home';
-import { Link } from 'gatsby';
 
 const Navbar = () => (
   <AppBar position="static">
     <Toolbar>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        sx={{ mr: 2 }}
-        href='/'
-        LinkComponent={Link}
-        title='home'
-      >
-        <HomeIcon />
-      </IconButton>
+      <Tooltip title="home">
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          sx={{ mr: 2 }}
+          href='/'
+        >
+          <HomeIcon />
+        </IconButton>
+      </Tooltip>
     </Toolbar>
   </AppBar>
 )

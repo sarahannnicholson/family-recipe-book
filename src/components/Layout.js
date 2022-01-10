@@ -4,11 +4,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { withPrefix } from "gatsby";
+import Container from '@mui/material/Container';
 
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import useSiteMetadata from "./SiteMetadata";
-import "./all.sass";
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
@@ -74,7 +74,9 @@ const TemplateWrapper = ({ children }) => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navbar />
-        <div>{children}</div>
+        <Container maxWidth="lg">
+          {children}
+        </Container>
         <Footer />
       </ThemeProvider>
     </div>
