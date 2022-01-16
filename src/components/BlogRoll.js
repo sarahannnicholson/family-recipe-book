@@ -34,24 +34,24 @@ const BlogRollTemplate = ({ data }) => {
               title={post.frontmatter.title}
               subheader={post.frontmatter.date}
             />
-            {post.frontmatter.featuredimage ? (
+            {post.frontmatter.featuredImage ? (
               <div>
                 <PreviewCompatibleImage
                   imageInfo={{
-                    image: post.frontmatter.featuredimage,
+                    image: post.frontmatter.featuredImage.image,
                     alt: `featured image thumbnail for post ${post.frontmatter.title}`,
                     width:
-                      post.frontmatter.featuredimage.childImageSharp
+                      post.frontmatter.featuredImage.image.childImageSharp
                         .gatsbyImageData.width,
                     height:
-                      post.frontmatter.featuredimage.childImageSharp
+                      post.frontmatter.featuredImage.image.childImageSharp
                         .gatsbyImageData.height,
                   }}
                 />
               </div>
             ) : null}
             <Typography variant="body2" color="text.secondary">
-              {post.excerpt}
+              {post.frontmatter.description}
             </Typography>
           </CardContent>
           <CardActions>
@@ -91,15 +91,14 @@ export default function BlogRoll() {
                 frontmatter {
                   title
                   templateKey
+                  description
                   date(formatString: "MMMM DD, YYYY")
-                  featuredpost
-                  featuredimage {
-                    childImageSharp {
-                      gatsbyImageData(
-                        width: 120
-                        quality: 100
-                        layout: CONSTRAINED
-                      )
+                  featuredImage {
+                    alt
+                    image {
+                      childImageSharp {
+                        gatsbyImageData(width: 120, quality: 100, layout: CONSTRAINED)
+                      }
                     }
                   }
                 }

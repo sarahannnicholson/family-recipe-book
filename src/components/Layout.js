@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { withPrefix } from "gatsby";
 import Container from '@mui/material/Container';
@@ -10,19 +10,19 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import useSiteMetadata from "./SiteMetadata";
 
-const TemplateWrapper = ({ children }) => {
+const TemplateWrapper = ({ children, containerProps }) => {
   const { title, description } = useSiteMetadata();
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const theme = React.useMemo(
     () =>
-      createTheme({
+      responsiveFontSizes(createTheme({
         palette: {
           mode: prefersDarkMode ? 'dark' : 'light',
         },
-      }),
+      })),
     [prefersDarkMode],
   );
-  
+
   return (
     <div>
       <Helmet>
@@ -74,7 +74,7 @@ const TemplateWrapper = ({ children }) => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navbar />
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" disableGutters={true} {...containerProps}>
           {children}
         </Container>
         <Footer />

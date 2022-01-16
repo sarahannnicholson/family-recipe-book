@@ -14,6 +14,7 @@ export default function FullWidthImage(props) {
   return (
     <React.Fragment>
       <div
+        className={props.classes?.container}
         style={{
           display: "grid",
           alignItems: "center",
@@ -43,14 +44,11 @@ export default function FullWidthImage(props) {
             objectPosition={imgPosition}
             style={{
               gridArea: "1/1",
-              // You can set a maximum height for the image, if you wish.
-              maxHeight: height,
+              maxHeight: height, // You can set a maximum height for the image, if you wish.
             }}
             layout="fullWidth"
-            // You can optionally force an aspect ratio for the generated image
-            aspectratio={3 / 1}
-            // This is a presentational image, so the alt should be an empty string
-            alt=""
+            aspectratio={3 / 1} // You can optionally force an aspect ratio for the generated image
+            alt="" // This is a presentational image, so the alt should be an empty string
             formats={["auto", "webp", "avif"]}
           />
         )}
@@ -79,5 +77,8 @@ export default function FullWidthImage(props) {
 FullWidthImage.propTypes = {
   img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
-  height: PropTypes.number
+  height: PropTypes.number,
+  classes: PropTypes.shape({
+    container: PropTypes.string
+  })
 };

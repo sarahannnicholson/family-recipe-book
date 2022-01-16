@@ -4,7 +4,9 @@ title: Phad See Ew
 date: 2022-01-10T05:11:42.659Z
 description: A tasty thai noodle dish
 featuredpost: true
-featuredimage: /img/phad_see_ew.jpg
+featuredImage:
+  image: /img/phad_see_ew.jpg
+  alt: Phad See ew in a bowl
 ---
 ## Ingredients
 
